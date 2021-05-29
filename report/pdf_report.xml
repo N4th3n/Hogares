@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+    
+        <!-- EL STRING ES LO QUE APARECE EN EL MENU   -->
+        <!-- EN REPORT QWEB HTML ME DA UNA VISTA PREVIA ANTES DE IMPRIMIR, SI FUERA PDF IMPRIME DE UNA  -->
+        <!-- LA ESTRUCTURA DEL NAME ES <MODULO>.<ID_TEMPLATE>  -->
+        <!-- MENU ES PARA QUE SALGA LA OPCION EN EL NAVEGADOR AUTOMATICAMENTE -->
+        <!-- EL REPORT NAME ES EL NOMBRE QUE TENDRA EL PDF  -->
+        <report id="report_casas" 
+          string="Reporte de la Casa" 
+          model="viv.casa" 
+          report_type="qweb-html" 
+          name="fin.reporteinterno"
+          menu="True" 
+          print_report_name="'Report %s casas' % (object.date_availability)"
+         /> 
+         
+        <template id="reporteinterno" >
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                    <!-- AQUI CAMBIA SI ES INTERNO O EXTERNO  -->
+                    <t t-call="web.internal_layout">
+                        <div class="page" style="font-size:18px">
+                                <div class="row">
+                                    <div class="col-md-12" align="center">
+                                        <h2><span t-field="o.name" /> <span t-field="o.date_availability" /></h2>
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" >
+                                            Descripción: <span t-field="o.description" /> 
+                                            Código Postal: <span t-field="o.postcode" /> 
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-6" >
+                                            Precio Esperado de Venta: <span t-field="o.expected_price" /> 
+                                            Precio de Venta: <span t-field="o.selling_price" /> 
+                                    </div>
+                                </div>
+                                <div class="row mt8">
+                                    <div class="col-md-12" >
+                                            Cuartos: <span t-field="o.bedrooms" /> 
+                                            Área de estar: <span t-field="o.living_area" />
+                                            Fachada: <span t-field="o.facedes" />
+                                            Garaje: <span t-field="o.garage" />
+                                            Jardin: <span t-field="o.garden" /> 
+                                    </div>
+                                </div>
+                                
+                        </div>
+                    </t>
+                </t>
+            </t>
+        </template>
+        
+    </data>
+</odoo>

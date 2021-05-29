@@ -1,0 +1,143 @@
+<odoo>
+  <data>
+
+    <!-- explicit calendar view definition -->
+
+    <!-- <record model="ir.ui.view" id="view_viv_casa_calendar">
+        <field name="name">viv.casa.calendar</field>
+        <field name="model">viv.casa</field>
+        <field name="arch" type="xml">
+            <calendar string="casa" date_start="date">
+                <field name="date_availability"/>
+                <field name="name"/>
+            </calendar>
+        </field>
+    </record> -->
+
+    <!-- explicit list graph definition -->
+
+    <record model="ir.ui.view" id="view_viv_casa_graph">
+        <field name="name">viv.casa.graph</field>
+        <field name="model">viv.casa</field>
+        <field name="arch" type="xml">
+            <graph string="casa">
+                <!-- El campo con el "measure se refiere al eje "y" y el vacio al "x" -->
+                <field name="date_availability"/>
+                <field name="selling_price" type="measure" />
+            </graph>
+        </field>
+    </record>
+
+    <!-- explicit list pivot definition -->
+
+    <record model="ir.ui.view" id="view_viv_casa_pivot">
+        <field name="name">viv.casa.pivot</field>
+        <field name="model">viv.casa</field>
+        <field name="arch" type="xml">
+            <graph string="casa">
+                <field name="date_availability" type="row"/>
+                <field name="name" type="row"/>
+                <field name="selling_price" type="measure"/>
+            </graph>
+        </field>
+    </record>
+
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="casa_list">
+      <field name="name">Casas</field>
+      <field name="model">viv.casa</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="name"/>
+          <field name="description"/>
+          <field name="postcode"/>
+          <field name="date_availability"/>
+          <field name="expected_price"/>
+          <field name="selling_price"/>
+          <field name="bedrooms"/>
+          <field name="living_area"/>
+          <field name="facedes"/>
+          <field name="garage"/>
+          <field name="garden"/>
+          <field name="garden_area"/>
+          <field name="garden_orientation"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="casa_form">
+      <field name="name">Casas form</field>
+      <field name="model">viv.casa</field>
+      <field name="arch" type="xml">
+        <form>
+          <group>
+            <field name="name"/>
+            <field name="description"/>
+            <field name="postcode"/>
+            <field name="date_availability"/>
+            <field name="expected_price"/>
+            <field name="selling_price"/>
+            <field name="bedrooms"/>
+            <field name="living_area"/>
+            <field name="facedes"/>
+            <field name="garage"/>
+            <field name="garden"/>
+            <field name="garden_area"/>
+            <field name="garden_orientation"/>
+            <field name="total_house"/>
+          </group>
+        </form>
+      </field>
+    </record>
+
+
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="fin.action_window">
+      <field name="name">Registros</field>
+      <field name="res_model">viv.casa</field>
+      <field name="view_mode">tree,form,graph,pivot</field>
+    </record>
+
+    <menuitem name="Hogares" id="fin.menu_1_list" parent=""
+      action="fin.action_window"/>
+
+    <menuitem id="fin.menu2" name="primer_nivel" parent="fin.menu_1_list" />
+
+    <!-- <menuitem name="Pestaña" id="test_first_level_menu" parent="casa_menu_1_list" /> -->
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="fin.action_server">
+      <field name="name">fin server</field>
+      <field name="model_id" ref="model_fin_fin"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+    <!-- Top menu item -->
+<!--
+    <menuitem name="fin" id="fin.menu_root"/>
+-->
+    <!-- menu categories -->
+<!--
+    <menuitem name="Menu 1" id="fin.menu_1" parent="fin.menu_root"/>
+    <menuitem name="Menu 2" id="fin.menu_2" parent="fin.menu_root"/>
+-->
+    <!-- actions -->
+<!--
+    <menuitem name="List" id="fin.menu_1_list" parent="fin.menu_1"
+              action="fin.action_window"/>
+    <menuitem name="Server to list" id="fin" parent="fin.menu_2"
+              action="fin.action_server"/>
+-->
+  </data>
+</odoo>
